@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PROJECTION" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <application
+        android:label="Index"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:theme="@android:style/Theme.Material.Light.NoActionBar">
+
+        <activity android:name=".MainActivity" android:label="Index" android:exported="true"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <!-- 长按控制中心的 Index 磁贴 → 打开 App -->
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE_PREFERENCES" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".SettingsActivity" android:label="设置" android:exported="false" />
+
+        <!-- 长按选中文字 / 分享文字、图片、txt -->
+        <activity
+            android:name=".TranslateActivity"
+            android:label="AI译"
+            android:exported="true"
+            android:excludeFromRecents="true"
+            android:taskAffinity=""
+            android:theme="@style/SheetTheme">
+            <intent-filter android:priority="999">
+                <action android:name="android.intent.action.PROCESS_TEXT" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="image/*" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".VoiceActivity"
+            android:label="Index语音翻译"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="audio/*" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".DocActivity" android:label="长文档翻译" android:exported="false" />
+        <activity android:name=".CaptureActivity" android:exported="false"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:excludeFromRecents="true" android:taskAffinity="" android:noHistory="false" />
+
+        <activity android:name=".CollapseActivity" android:exported="false"
+            android:theme="@android:style/Theme.NoDisplay"
+            android:excludeFromRecents="true" android:taskAffinity="" android:noHistory="true" />
+
+        <service android:name=".QuickTile" android:exported="true"
+            android:label="Index" android:icon="@drawable/ic_tile"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+            <meta-data android:name="android.service.quicksettings.TOGGLEABLE_TILE" android:value="false" />
+        </service>
+
+        <activity android:name=".InputActivity" android:exported="false" android:theme="@style/SheetTheme"
+            android:excludeFromRecents="true" android:taskAffinity="" />
+        <activity android:name=".PhotoActivity" android:exported="false"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:excludeFromRecents="true" android:taskAffinity="" />
+        <provider android:name=".ShotProvider" android:authorities="com.example.aitranslate.shots"
+            android:exported="false" android:grantUriPermissions="true" />
+
+        <service android:name=".ShotA11y" android:exported="false"
+            android:label="Index 框选翻译"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+            <meta-data android:name="android.accessibilityservice" android:resource="@xml/a11y_shot" />
+        </service>
+
+        <activity android:name=".CaptionActivity" android:exported="false"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:excludeFromRecents="true" android:taskAffinity="" />
+        <service android:name=".CaptionService" android:exported="false"
+            android:foregroundServiceType="mediaProjection" />
+
+        <service android:name=".KeepAlive" android:exported="false"
+            android:foregroundServiceType="shortService" />
+        <service android:name=".FloatService" android:exported="false"
+            android:foregroundServiceType="mediaProjection" />
+    </application>
+</manifest>

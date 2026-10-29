@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="a11y_desc">仅用于“框选翻译”：点下拉磁贴后直接截取当前屏幕供你框选，不读取、不保存任何其他内容。开启后无需每次共享屏幕。</string>
+</resources>

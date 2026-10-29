@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="SheetTheme" parent="@android:style/Theme.Material.Light.NoActionBar">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:colorAccent">#F25D8E</item>
+        <item name="android:colorControlActivated">#F25D8E</item>
+        <item name="android:textColorHighlight">#55F25D8E</item>
+    </style>
+    <style name="IndexLight" parent="@android:style/Theme.Material.Light.NoActionBar">
+        <item name="android:colorAccent">#F25D8E</item>
+        <item name="android:colorControlActivated">#F25D8E</item>
+        <item name="android:colorPrimary">#F25D8E</item>
+        <item name="android:textColorHighlight">#55F25D8E</item>
+    </style>
+    <style name="IndexDark" parent="@android:style/Theme.Material.NoActionBar">
+        <item name="android:colorAccent">#FF8DB0</item>
+        <item name="android:colorControlActivated">#FF8DB0</item>
+        <item name="android:colorPrimary">#FF8DB0</item>
+        <item name="android:textColorHighlight">#55FF8DB0</item>
+    </style>
+</resources>
